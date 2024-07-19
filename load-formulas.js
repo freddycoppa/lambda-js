@@ -1,4 +1,4 @@
-fetch(new './formula-library.json')
+fetch('./formula-library.json')
 .then(res => res.json())
 .then(async data => {
     for (const [ name, exprString ] of data)
