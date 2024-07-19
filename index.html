@@ -86,7 +86,6 @@
                 <input type="button" value="Cancel" class="button" style="color:orangered" onclick="document.getElementById('formula-name-input').value = ''; document.getElementById('add-formula').style.display = 'none'"></button>
             </form>
         </div>
-        <br>
         <div id="lambda-result" class="text" style="display:none">
             <h2>Result</h2>
             <table style="margin-left: auto; margin-right: auto; border-collapse: separate; border-spacing: 0.5em">
@@ -100,29 +99,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="lambda-result-ski" style="display: none; color: bisque;">
-                        <td>&#x2261;<sub>SKI</sub></td>
-                        <td id="lambda-result-ski-content"></td>
+                    <tr id="lambda-result-ski" style="display: none">
+                        <td style="color: aquamarine">&#x2261;<sub>SKI</sub></td>
+                        <td id="lambda-result-ski-content" style="color: bisque"></td>
                         <td>
                             <button class="button" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('lambda-result-ski-content').textContent)">📋</button>
                         </td>
                     </tr>
-                    <tr id="lambda-result-beta" style="display: none; color: aquamarine;">
-                        <td>&#x2261;<sub>&#x03b2;</sub></td>
+                    <tr id="lambda-result-beta" style="display: none">
+                        <td style="color: aquamarine">&#x2261;<sub>&#x03b2;</sub></td>
                         <td id="lambda-result-beta-content"></td>
                         <td>
                             <button class="button" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('lambda-result-beta-content').textContent)">📋</button>
                         </td>
                     </tr>
-                    <tr id="lambda-result-eta" style="display: none; color: aquamarine;">
-                        <td>&#x2261;<sub>&#x03b7;</sub></td>
+                    <tr id="lambda-result-eta" style="display: none">
+                        <td style="color: aquamarine">&#x2261;<sub>&#x03b7;</sub></td>
                         <td id="lambda-result-eta-content"></td>
                         <td>
                             <button class="button" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('lambda-result-eta-content').textContent)">📋</button>
                         </td>
                     </tr>
-                    <tr id="lambda-result-alpha" style="display: none; color: aquamarine;">
-                        <td>&#x2261;<sub>&#x03b1;</sub></td>
+                    <tr id="lambda-result-alpha" style="display: none">
+                        <td style="color: aquamarine">&#x2261;<sub>&#x03b1;</sub></td>
                         <td id="lambda-result-alpha-content"></td>
                     </tr>
                 </tbody>
