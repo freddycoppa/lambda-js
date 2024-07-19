@@ -1,4 +1,4 @@
-# Lambda Calculus Calculator
+# Lambda Calculus Interpreter
 This is a simple web app that evaluates expressions in Lambda Calculus, the smallest universal programming language introduced by Alonzo Church in the 1930s. It encompasses the following functionalities:
 - Evaluating λ-expressions
   - The 'λ' symbol can be inserted using the backslash '\\' key
