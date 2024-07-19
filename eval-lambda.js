@@ -96,14 +96,14 @@ window.displayEvalLambda = function() {
         const { expr, betaReduced, etaReduced, alphaEquivalences } = result;
         document.getElementById('lambda-result-expr-content').textContent = expr;
         document.getElementById('lambda-result-beta-content').textContent = betaReduced;
-        document.getElementById('lambda-result-beta').style.display = 'block';
+        document.getElementById('lambda-result-beta').style.display = 'table-row';
         if (etaReduced) {
             document.getElementById('lambda-result-eta-content').textContent = etaReduced;
-            document.getElementById('lambda-result-eta').style.display = 'block';
+            document.getElementById('lambda-result-eta').style.display = 'table-row';
         }
         if (alphaEquivalences && alphaEquivalences.length > 0) {
             document.getElementById('lambda-result-alpha-content').textContent = alphaEquivalences.toReversed().join(', ');
-            document.getElementById('lambda-result-alpha').style.display = 'block';
+            document.getElementById('lambda-result-alpha').style.display = 'table-row';
         }
         document.getElementById('lambda-result').style.display = 'block';
     });
@@ -124,6 +124,6 @@ window.displaySKI = function(input) {
     clearLambdaResult();
     document.getElementById('lambda-result-expr-content').textContent = result.expr;
     document.getElementById('lambda-result-ski-content').textContent = expr.ski();
-    document.getElementById('lambda-result-ski').style.display = 'block';
+    document.getElementById('lambda-result-ski').style.display = 'table-row';
     document.getElementById('lambda-result').style.display = 'block';
 }
