@@ -3,7 +3,7 @@ A simple web app that evaluates expressions in Lambda Calculus, the smallest uni
 
 - Evaluating λ-expressions
   - The 'λ' symbol can be inserted using the backslash '\\' key
-  - Evaluations yield *β-* and *η-reductions* of the entered expression, as well as any *α-equivalent* terms present in the Formulæ list
+  - Evaluations yield *β-* and *η-reductions* of the entered expression, as well as any *α-equivalent* terms present in the *Formulæ* list
 - Formulas that can be used in λ-expressions
   - The list of formulas can be found in the *Formulæ* section
   - An assortment of relevant combinatory birds are already preloaded into the list
