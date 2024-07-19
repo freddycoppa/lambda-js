@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lambda</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        const Lambda = '\u03bb';
+        //const Bottom = '\u22a5';
+    </script>
+    <script src="./lambda.js" type="module"></script>
+    <script src="./eval-lambda.js" type="module"></script>
+    <script src="./formulas.js" type="module"></script>
+    <script src="./dropdown-toggle.js" defer></script>
+    <script src="./load-formulas.js" defer></script>
+</head>
+<body>
+    <h1 class="center">Lambda Calculus</h1>
+    <div class="padded">
+        <h2>Formulæ <button class="button dropdown-toggle" data-div-id="formulae" data-up-icon=">" data-down-icon="v">></button></h2>
+        <div id="formulae" style="display:none">
+            <table>
+                <tbody id="formula-list"></tbody>
+            </table>
+            <h3><button class="button dropdown-toggle" data-div-id="formula-help" data-up-icon="?" data-down-icon="?">?</button></h3>
+            <div id="formula-help" style="display:none;margin-left:5%;">
+                These are formulas that can be used in your &#x03bb;-expressions.
+                They are formatted
+                <blockquote style="color:grey">
+                    (&#x03bb;*.* 
+                    <span style="color:aquamarine">expression</span>)
+                    &#x03bb;<b style="color:aquamarine">name</b>.
+                </blockquote>
+                where each <b style="color:aquamarine">name</b> corresponds to an <span style="color:aquamarine">expression</span>.
+                Each time one the above names is encountered in a &#x03bb;-term, it is substituted for its corresponding expression.<br>
+                You can create your own formulas using the "Add Formula" button below.
+                <br>
+                Note that due to the fact that &#x03bb;-terms are <i>anonymous</i> functions, formulas can only refer to previous formulas – circular definitions are impossible and will yield unexpected results if attempted.
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="center padded">
+        <form id="lambda-form" name="lambda-form" onsubmit="event.preventDefault(); displayEvalLambda()" spellcheck="false">
+            <label for="lambda-input">Enter a &#x03bb;-expression:</label><br><br>
+            <input type="button" title="clear" value="x" class="button" style="color: orangered" onclick="
+                document.getElementById('lambda-input').value = '';
+                document.getElementById('lambda-input').focus();
+            ">
+            <input type="text" autocomplete="off" id="lambda-input" name="lambda-input" class="input" style="width: 50%" onkeypress="
+                if (event.which != 92) return;
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.slice(0, start) + Lambda + this.value.slice(end);
+                this.setSelectionRange(start + 1, start + 1);
+                return false;
+            ">
+            <input type="submit" value="Evaluate" class="button" style="color:palegreen">
+            <input type="button" value="SKI" class="button" style="color:bisque" onclick="displaySKI(document.getElementById('lambda-input').value)">
+            <input type="button" value="Add Formula" class="button" onclick="document.getElementById('add-formula').style.display = 'block'; document.getElementById('formula-name-input').focus()">
+        </form>
+        <br>
+        <div id="add-formula" style="display:none">
+            <form onsubmit="
+                event.preventDefault();
+                const name = document.getElementById('formula-name-input').value;
+                addFormula(
+                    name,
+                    document.getElementById('lambda-input').value,
+                    () => {
+                        document.getElementById('add-formula').style.display = 'none';
+                        document.getElementById('lambda-input').value = '';
+                        document.getElementById('formula-name-input').value = '';
+                        alert(`Formula \u0022${name}\u0022 added`);
+                    }
+                );
+            " spellcheck="false">
+                <label for="formula-name-input">Enter a name for this formula:</label>
+                <input type="text" value="" autocomplete="off" id="formula-name-input" name="formula-name-input" class="input">
+                <input type="submit" value="Add" class="button" style="color:palegreen">
+                <input type="button" value="Cancel" class="button" style="color:orangered" onclick="document.getElementById('formula-name-input').value = ''; document.getElementById('add-formula').style.display = 'none'"></button>
+            </form>
+        </div>
+        <br>
+        <div id="lambda-result" class="text" style="display:none">
+            <h2>Result</h2>
+            <div id="lambda-result-expr">
+                <span id="lambda-result-expr-content"></span>
+                <!-- &nbsp;
+                <button class="button" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('lambda-result-expr-content').textContent)">📋</button> -->
+            </div>
+            <div id="lambda-result-ski" style="display:none">
+                <br>
+                <span style="color:aquamarine"><!-- &#x2261;<sub>SKI</sub> -->=</span> <span id="lambda-result-ski-content" style="color:bisque"></span>
+                &nbsp;
+                <button class="button" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('lambda-result-ski-content').textContent)">📋</button>
+            </div>
+            <div id="lambda-result-beta" style="display:none">
+                <br>
+                <span style="color:aquamarine">&#x2261;<sub>&#x03b2;</sub></span> <span id="lambda-result-beta-content"></span>
+                &nbsp;
+                <button class="button" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('lambda-result-beta-content').textContent)">📋</button>
+            </div>
+            <div id="lambda-result-eta" style="display:none">
+                <br>
+                <span style="color:aquamarine">&#x2261;<sub>&#x03b7;</sub></span> <span id="lambda-result-eta-content"></span>
+                &nbsp;
+                <button class="button" title="Copy" onclick="navigator.clipboard.writeText(document.getElementById('lambda-result-eta-content').textContent)">📋</button>
+            </div>
+            <div id="lambda-result-alpha" style="display:none">
+                <br>
+                <span style="color:aquamarine">&#x2261;<sub>&#x03b1;</sub></span> <span id="lambda-result-alpha-content"></span>
+            </div>
+            <br>
+            <button class="button" style="color:red" onclick="clearLambdaResult();">Clear</button>
+        </div>
+    </div>
+    <div class="padded">
+        <h2>Guide <button class="button dropdown-toggle" data-div-id="guide" data-up-icon=">" data-down-icon="v" data-default-open="true">v</button></h2>
+        <div id="guide">
+            <ul>
+                <li>
+                    Enter a <span style="color:aquamarine">&#x03bb;-expression</span> into the input field
+                    <ul>
+                        <li>
+                            To enter the character <span style="color:aquamarine">'&#x03bb;'</span>,
+                            simply use the backslash key <span style="color:aquamarine">'\'</span>
+                        </li>
+                        <li>
+                            Hit <span style="color:aquamarine">enter</span> or press <span style="color:palegreen">Evaluate</span> to evaluate the &#x03bb;-expression
+                        </li>
+                        <li>
+                            The evaluation will yield <span style="color:aquamarine">&#x03b2;-</span> and <span style="color:aquamarine">&#x03b7;-reductions</span> of the entered expression, as well as any <span style="color:aquamarine">&#x03b1;-equivalent</span> terms present in the <b>Formulæ</b> list
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span style="color:aquamarine">Formulas</span> that can be used in &#x03bb;-expressions are found in the <b>Formulæ</b> dropdown
+                    <ul>
+                        <li>
+                            A formula is an alias for an expression;
+                            It's a variable that is substituted for its corresponding expression during evaluation
+                        </li>
+                        <li>
+                            An assortment of combinators are already preloaded into the list
+                        </li>
+                        <li>
+                            Custom formulas can be added using the <u>Add Formula</u> button
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    A &#x03bb;-expression can be converted to an expression containing only the <span style="color:aquamarine">S</span>, <span style="color:aquamarine">K</span> & <span style="color:aquamarine">I</span> combinators using the <span style="color:bisque">SKI</span> button
+                    <ul>
+                        <li>
+                            Definitions for these combinators (the so-called <span style="color:bisque">SKI calculus</span>) can be found in <b>Formulæ</b> section
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
