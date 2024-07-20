@@ -149,7 +149,18 @@
                             The evaluation will yield <span style="color:aquamarine">&#x03b2;-</span> and <span style="color:aquamarine">&#x03b7;-reductions</span> of the entered expression, as well as any <span style="color:aquamarine">&#x03b1;-equivalent</span> terms present in the <b>Formulæ</b> list
                         </li>
                         <li>
-                            Any &#x03bb;-expressions that take longer than <span style="color:aquamarine">250 ms</span> to evaluate, or that result in a stack overflow will yield <span style="color:aquamarine">&#x22a5;</span>
+                            Any &#x03bb;-expressions that take longer than <span style="color:aquamarine">100 ms</span> to evaluate, or that result in a stack overflow will yield <span style="color:aquamarine">&#x22a5;</span>, which represents an <span style="color:red">irreducible</span> term
+                            <ul>
+                                <li>
+                                    Due to the way browsers run this script (most likely on a <span style="color:aquamarine">low-priority thread</span>), &#x03bb;-expressions may sometimes take longer than 100 ms to evaluate, and time out, yielding <span style="color:aquamarine">&#x22a5;</span>, regardless of whether they are theoretically reducible or not
+                                </li>
+                                <li>
+                                    This is especially the case when switching back to this tab after spending (CPU) time elsewhere – the tab would be backgrounded, and thus would take extremely long (<span style="color:red">> 100 ms</span>) to compute &#x03bb;-evaluations
+                                </li>
+                                <li>
+                                    The solution is simple – keep hitting <span style="color:palegreen">Evaluate</span> until the tab is foregrounded again and yields the correct evaluation
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -175,6 +186,9 @@
                             Definitions for these combinators (the so-called <span style="color:bisque">SKI calculus</span>) can be found in <b>Formulæ</b> section
                         </li>
                     </ul>
+                </li>
+                <li>
+                    The <span style="color:aquamarine">source code</span> for this website can be found at <a href="https://github.com/freddycoppa/lambda-js">github.com/freddycoppa/lambda-js</a>
                 </li>
             </ul>
         </div>
