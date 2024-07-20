@@ -101,7 +101,7 @@ window.addFormula = function(nameInput, exprInput, successCallback=undefined, al
     const expr = result.expr;
     const index = formulaNames.length;
 
-    timedLambdaReduce(100, expr, reductions => {
+    timedLambdaReduce(250, expr, reductions => {
         formulaNames.push(name);
         formulaExprs.push(expr);
         formulaReductions.push(reductions);
@@ -120,7 +120,7 @@ function moveFormulaUp(index) {
     formulaExprs.splice(index - 1, 0, formulaExpr);
 
     formulaReductions.splice(index, 1);
-    timedLambdaReduce(100, formulaExpr, reductions => {
+    timedLambdaReduce(250, formulaExpr, reductions => {
         formulaReductions.splice(index - 1, 0, reductions);
 
         const formulaRow = document.getElementById('formula-list').children[index];
@@ -140,7 +140,7 @@ function moveFormulaDown(index) {
     formulaNames.splice(index + 1, 0, formulaName); formulaExprs.splice(index + 1, 0, formulaExpr);
 
     formulaReductions.splice(index, 1);
-    timedLambdaReduce(100, formulaExpr, reductions => {
+    timedLambdaReduce(250, formulaExpr, reductions => {
         formulaReductions.splice(index + 1, 0, reductions);
     
         const formulaRow = document.getElementById('formula-list').children[index];

@@ -90,7 +90,7 @@ window.clearLambdaResult = function() {
 }
 
 window.displayEvalLambda = function() {
-    evalLambdaTimed(100, document.getElementById('lambda-input').value, result => {
+    evalLambdaTimed(250, document.getElementById('lambda-input').value, result => {
         if (result === null) return;
         clearLambdaResult();
         const { expr, betaReduced, etaReduced, alphaEquivalences } = result;
