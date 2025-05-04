@@ -21,33 +21,118 @@
 </head>
 <body>
     <h1 class="center">Lambda Calculus</h1>
+    <h4 class="center">by <a href="https://github.com/freddycoppa">Vedant Vrattikoppa</a></h4>
     <div class="padded">
-        <h2>Formulæ <button class="button dropdown-toggle" data-div-id="formulae" data-up-icon=">" data-down-icon="v">></button></h2>
-        <div id="formulae" style="display:none">
-            <table>
-                <tbody id="formula-list"></tbody>
-            </table>
-            <h3><button class="button dropdown-toggle" data-div-id="formula-help" data-up-icon="?" data-down-icon="?">?</button></h3>
-            <div id="formula-help" style="display:none;margin-left:5%;font-size:14px">
-                These are formulas that can be used in your &#x03bb;-expressions.
-                They are formatted
-                <blockquote style="color:grey">
-                    (&#x03bb;*.* 
-                    <span style="color:aquamarine">expression</span>)
-                    &#x03bb;<b style="color:aquamarine">name</b>.
-                </blockquote>
-                where each <b style="color:aquamarine">name</b> corresponds to an <span style="color:aquamarine">expression</span>.
-                Each time one the above names is encountered in a &#x03bb;-term, it is substituted for its corresponding expression.<br>
-                You can create your own formulas using the "Add Formula" button below.
-                <br>
-                Note that due to the fact that &#x03bb;-terms are <i>anonymous</i> functions, formulas can only refer to previous formulas – circular definitions are impossible and will yield unexpected results if attempted.
-            </div>
+        <h2>Information <button class="button dropdown-toggle" data-div-id="information" data-up-icon=">" data-down-icon="v" data-default-open="true">v</button></h2>
+        <div id="information">
+            <h3>Introduction</h3>
+            <p>
+                This website has been created as a <span style="color: aquamarine">study of programming languages</span>, and how one would build an interpreter for <a href="https://en.wikipedia.org/wiki/Lambda_calculus">&#x03bb;-calculus</a>, the simplest programming language.
+            </p>
+            <p>
+                The purpose of this website is to demonstrate fundamental concepts about programming languages via a hands-on approach. This is mainly aimed at educators & students in computer science trying to teach & learn the <span style="color: aquamarine">foundations of programming languages</span>, and how compilers/interpreters work. A good example of a course in which this could be used is <a href="https://www.cs.purdue.edu/homes/bendy/cs456/fall21/">CS 45600 @ Purdue University</a>.
+            </p>
+            <p>
+                There are two main ways this website achieves this goal:
+                <ol>
+                    <li>
+                        By presenting a working implementation of a <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive-descent parser</a> & interpreter for &#x03bb;-calculus
+                    </li>
+                    <li>
+                        By introducing the paradigm of <a href="https://en.wikipedia.org/wiki/Functional_programming">functional programming</a>, a much more pure, fundamental & abstract way of coding, as compared to more widespread paradigms such as <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented programming</a> or <a href="https://en.wikipedia.org/wiki/Procedural_programming">procedural programming</a>
+                    </li>
+                </ol>
+            </p>
+            <h3><a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">Recursive-Descent Parsing</a></h3>
+            <p>
+                The <a href="#lambda-interpreter">interactive &#x03bb;-calculus interpreter</a> that can be found further down on this page is implemented via <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive-descent parsing</a>, wherein text is fed into a mechanism that attempts to match it against certain recursive rules &mdash; those that are written in reference to themselves.
+            </p>
+            <p>
+                The beauty with this technique is that once the text is matched with its rule, it's easy to provide JavaScript code (or any other language for that matter) that does exactly what the &#x03bb;-code is supposed to do; in other words, a recursive descent parser written in JavaScript converts <a href="https://en.wikipedia.org/wiki/Lambda_calculus">&#x03bb;-calculus</a> to JavaScript on the fly. Essentially, <span style="color: aquamarine">the rules become self-enforcing</span>.
+            </p>
+            <p>
+                This exciting mechanism can be inspected at the <a href="https://github.com/freddycoppa/lambda-js">GitHub repository</a> of this project, which bears for all to see the elegant code that parses & interprets <a href="https://en.wikipedia.org/wiki/Lambda_calculus">&#x03bb;-calculus</a>. There's a lot to learn from trying to understand how this code works, and I believe it provides an excellent example/case study to students in a course about programming languages.
+            </p>
+            <h3><a href="https://en.wikipedia.org/wiki/Functional_programming">Functional Programming</a></h3>
+            <p>
+                Now that we know how to evaluate <a href="https://en.wikipedia.org/wiki/Lambda_calculus">&#x03bb;-calculus</a>, we turn to its fundamental yet far-reaching implications. The so-called "simplest programming language" ushers in an incredible style of coding, one which many coders have yet to experience.
+            </p>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Functional_programming">Functional programming</a>, in which functions can be created, destroyed & operated on like any other data type, is a direct consequence of <a href="https://en.wikipedia.org/wiki/Lambda_calculus">&#x03bb;-calculus</a>. This paradigm is incredibly powerful, and draws upon fundamental concepts in computer science. <a href="https://en.wikipedia.org/wiki/Lambda_calculus">&#x03bb;-calculus</a> contains the <span style="color:aquamarine">rudiments</span> of important constructs in functional programming, which is why it's a great place to start learning the domain.
+            </p>
+            <p>
+                This website showcases said rudiments, and provides a <span style="color: aquamarine">hands-on learning experience</span> where prospective coders & students alike can play around with &#x03bb;-terms and understand how they interact in a non-rigorous setting.
+            </p>
         </div>
     </div>
-    <br><br>
-    <div class="center padded">
+    <div class="padded" style="font-size:14px">
+        <h2>Guide <button class="button dropdown-toggle" data-div-id="guide" data-up-icon=">" data-down-icon="v" data-default-open="true">v</button></h2>
+        <div id="guide">
+            <ul>
+                <li>
+                    Enter a <span style="color:aquamarine">&#x03bb;-expression</span> into the input field
+                    <ul>
+                        <li>
+                            To enter the character <span style="color:aquamarine">'&#x03bb;'</span>,
+                            simply use the backslash key <span style="color:aquamarine">'\'</span>
+                        </li>
+                        <li>
+                            Hit <span style="color:aquamarine">enter</span> or press <span style="color:palegreen">Evaluate</span> to evaluate the &#x03bb;-expression
+                        </li>
+                        <li>
+                            The evaluation will yield <span style="color:aquamarine">&#x03b2;-</span> and <span style="color:aquamarine">&#x03b7;-reductions</span> of the entered expression, as well as any <span style="color:aquamarine">&#x03b1;-equivalent</span> terms present in the <b>Formulæ</b> list
+                        </li>
+                        <li>
+                            Any &#x03bb;-expressions that take longer than <span style="color:aquamarine">100 ms</span> to evaluate, or that result in a stack overflow will yield <span style="color:aquamarine">&#x22a5;</span>, which represents an <span style="color:red">irreducible</span> term
+                            <ul>
+                                <li>
+                                    Due to the way browsers run this script (most likely on a <span style="color:aquamarine">low-priority thread</span>), &#x03bb;-expressions may sometimes take longer than 100 ms to evaluate, and time out, yielding <span style="color:aquamarine">&#x22a5;</span>, regardless of whether they are theoretically reducible or not
+                                </li>
+                                <li>
+                                    This is especially the case when switching back to this tab after spending (CPU) time elsewhere – the tab would be backgrounded, and thus would take extremely long (<span style="color:red">> 100 ms</span>) to compute &#x03bb;-evaluations
+                                </li>
+                                <li>
+                                    The solution is simple – keep hitting <span style="color:palegreen">Evaluate</span> until the tab is foregrounded again and yields the correct evaluation
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span style="color:aquamarine">Formulas</span> that can be used in &#x03bb;-expressions are found in the <b>Formulæ</b> dropdown list
+                    <ul>
+                        <li>
+                            A formula is an alias for an expression;
+                            It's a variable that is substituted for its corresponding expression during evaluation
+                        </li>
+                        <li>
+                            An assortment of combinators are already preloaded into the list
+                        </li>
+                        <li>
+                            Custom formulas can be added using the <u>Add Formula</u> button
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    A &#x03bb;-expression can be converted to an expression containing only the <span style="color:aquamarine">S</span>, <span style="color:aquamarine">K</span> & <span style="color:aquamarine">I</span> combinators using the <span style="color:bisque">SKI</span> button
+                    <ul>
+                        <li>
+                            Definitions for these combinators (the so-called <span style="color:bisque">SKI calculus</span>) can be found in <b>Formulæ</b> section
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    The <span style="color:aquamarine">source code</span> for this website can be found at <a href="https://github.com/freddycoppa/lambda-js">github.com/freddycoppa/lambda-js</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="center padded" id="lambda-interpreter">
+        
+        <hr>
+        <br><br><br>
         <form id="lambda-form" name="lambda-form" onsubmit="event.preventDefault(); displayEvalLambda()" spellcheck="false">
-            <label for="lambda-input">Enter a &#x03bb;-expression:</label><br><br>
+            <label for="lambda-input"><h2>Enter a &#x03bb;-expression:</h2></label><br>
             <input type="button" title="clear" value="x" class="button" style="color: orangered" onclick="
                 document.getElementById('lambda-input').value = '';
                 document.getElementById('lambda-input').focus();
@@ -131,66 +216,48 @@
         </div>
     </div>
     <br><br>
-    <div class="padded" style="font-size:14px">
-        <h2>Guide <button class="button dropdown-toggle" data-div-id="guide" data-up-icon=">" data-down-icon="v" data-default-open="true">v</button></h2>
-        <div id="guide">
-            <ul>
-                <li>
-                    Enter a <span style="color:aquamarine">&#x03bb;-expression</span> into the input field
-                    <ul>
-                        <li>
-                            To enter the character <span style="color:aquamarine">'&#x03bb;'</span>,
-                            simply use the backslash key <span style="color:aquamarine">'\'</span>
-                        </li>
-                        <li>
-                            Hit <span style="color:aquamarine">enter</span> or press <span style="color:palegreen">Evaluate</span> to evaluate the &#x03bb;-expression
-                        </li>
-                        <li>
-                            The evaluation will yield <span style="color:aquamarine">&#x03b2;-</span> and <span style="color:aquamarine">&#x03b7;-reductions</span> of the entered expression, as well as any <span style="color:aquamarine">&#x03b1;-equivalent</span> terms present in the <b>Formulæ</b> list
-                        </li>
-                        <li>
-                            Any &#x03bb;-expressions that take longer than <span style="color:aquamarine">100 ms</span> to evaluate, or that result in a stack overflow will yield <span style="color:aquamarine">&#x22a5;</span>, which represents an <span style="color:red">irreducible</span> term
-                            <ul>
-                                <li>
-                                    Due to the way browsers run this script (most likely on a <span style="color:aquamarine">low-priority thread</span>), &#x03bb;-expressions may sometimes take longer than 100 ms to evaluate, and time out, yielding <span style="color:aquamarine">&#x22a5;</span>, regardless of whether they are theoretically reducible or not
-                                </li>
-                                <li>
-                                    This is especially the case when switching back to this tab after spending (CPU) time elsewhere – the tab would be backgrounded, and thus would take extremely long (<span style="color:red">> 100 ms</span>) to compute &#x03bb;-evaluations
-                                </li>
-                                <li>
-                                    The solution is simple – keep hitting <span style="color:palegreen">Evaluate</span> until the tab is foregrounded again and yields the correct evaluation
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <span style="color:aquamarine">Formulas</span> that can be used in &#x03bb;-expressions are found in the <b>Formulæ</b> dropdown
-                    <ul>
-                        <li>
-                            A formula is an alias for an expression;
-                            It's a variable that is substituted for its corresponding expression during evaluation
-                        </li>
-                        <li>
-                            An assortment of combinators are already preloaded into the list
-                        </li>
-                        <li>
-                            Custom formulas can be added using the <u>Add Formula</u> button
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    A &#x03bb;-expression can be converted to an expression containing only the <span style="color:aquamarine">S</span>, <span style="color:aquamarine">K</span> & <span style="color:aquamarine">I</span> combinators using the <span style="color:bisque">SKI</span> button
-                    <ul>
-                        <li>
-                            Definitions for these combinators (the so-called <span style="color:bisque">SKI calculus</span>) can be found in <b>Formulæ</b> section
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    The <span style="color:aquamarine">source code</span> for this website can be found at <a href="https://github.com/freddycoppa/lambda-js">github.com/freddycoppa/lambda-js</a>
-                </li>
-            </ul>
+    <div class="padded">
+        <h2>Formulæ <button class="button dropdown-toggle" data-div-id="formulae" data-up-icon=">" data-down-icon="v">></button></h2>
+        <div id="formulae" style="display:none">
+            <table>
+                <tbody id="formula-list"></tbody>
+            </table>
+            <h3><button class="button dropdown-toggle" data-div-id="formula-help" data-up-icon="?" data-down-icon="?">?</button></h3>
+            <div id="formula-help" style="display:none;margin-left:5%;font-size:14px">
+                These are formulas that can be used in your &#x03bb;-expressions.
+                They are formatted
+                <blockquote style="color:grey">
+                    (&#x03bb;*.* 
+                    <span style="color:aquamarine">expression</span>)
+                    &#x03bb;<b style="color:aquamarine">name</b>.
+                </blockquote>
+                where each <b style="color:aquamarine">name</b> corresponds to an <span style="color:aquamarine">expression</span>.
+                Whenever one the above names is encountered in a &#x03bb;-term, it's substituted for its corresponding expression.<br>
+                You can create your own formulas using the "Add Formula" button below.
+                <br>
+                Note that due to the fact that &#x03bb;-terms are <i>anonymous</i> functions, formulas can only refer to previous formulas &mdash; circular definitions are impossible and will yield unexpected results if attempted.
+            </div>
+        </div>
+    </div>
+    <div class="padded"><hr></div>
+    <div class="padded">
+        <h2>References <button class="button dropdown-toggle" data-div-id="references" data-up-icon=">" data-down-icon="v" data-default-open="true">v</button></h2>
+        <div id="references">
+            <div style="text-indent: -36px; padding-left: 36px;">
+                <p>
+                    Lähteenmäki, J. M. (2019, August 26). Combinator Birds. <em>Architecturally Elegant</em> [Blog]. <a href="https://blog.lahteenmaki.net/combinator-birds.html">https://blog.lahteenmaki.net/combinator-birds.html</a>
+                </p>
+            </div>
+            <div style="text-indent: -36px; padding-left: 36px;">
+                <p>
+                    Lebec, G. (2017). Lambda Calculus &mdash; Fundamentals of Lambda Calculus & Functional Programming in JavaScript [Video]. <em>Fullstack Academy</em>. <a href="https://youtu.be/3VQ382QG-y4">https://youtu.be/3VQ382QG-y4</a>
+                </p>
+            </div>
+            <div style="text-indent: -36px; padding-left: 36px;">
+                <p>
+                    Rojas, R. (2015, March 28). A tutorial introduction to the lambda calculus. arXiv preprint arXiv:1503.09060, 1-9. <a href="https://doi.org/10.48550/arXiv.1503.09060">https://doi.org/10.48550/arXiv.1503.09060</a>
+                </p>
+            </div>
         </div>
     </div>
 </body>
